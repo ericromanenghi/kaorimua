@@ -1,0 +1,32 @@
+version: '3'
+services:
+    backend:
+        image: kaorimua/backend
+        build: ./backend
+        ports:
+            - "5000:5000"
+        environment:
+            - CONFIG_FILE=/app/config/dev.py
+        volumes:
+            - ./backend:/app
+            - ./static/img:/static/img
+    frontend:
+        image: kaorimua/frontend
+        build: ./frontend
+        ports:
+            - "8000:80"
+        volumes:
+            - ./frontend:/usr/share/nginx/html
+            - ./static/img:/usr/share/nginx/html/static/img
+    admin:
+        image: kaorimua/admin
+        build: ./admin
+        ports:
+            - "80:8080"
+        environment:
+            - HOST=0.0.0.0
+        volumes:
+            - ./admin:/usr/src/app
+            - ./static/img:/usr/app/static/img/uploaded
+            - /usr/src/app/node_modules
+
