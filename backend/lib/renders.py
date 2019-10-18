@@ -1,8 +1,7 @@
 def render_photo(photo):
 	return {
 		'id': photo.id,
-		'name': photo.name,
-		'extension': photo.extension,
+		'filename': photo.filename,
 		'gallery_id': photo.gallery_id
     }
 

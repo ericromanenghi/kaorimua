@@ -3,9 +3,8 @@ from .db.photo import Photo
 from .db.base import db_session
 from .renders import render_photo
 
-def add_new_photo(file_name, gallery_id):
-    name, extension = file_name.split('.')
-    photo = Photo(name=name, extension=extension, gallery_id=gallery_id)
+def add_new_photo(filename, gallery_id):
+    photo = Photo(filename=filename, gallery_id=gallery_id)
 
     db_session.add(photo)
     db_session.commit()
