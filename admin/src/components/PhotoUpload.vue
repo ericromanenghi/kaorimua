@@ -1,24 +1,23 @@
 <template>
     <div id="photo-upload-container">
-        <a @click="onCreate()" class="waves-effect waves-light btn modal-trigger" :href="'#modal-photo-upload'+gallery_id">
+        <a @click="displayUploadPhoto()" class="waves-effect waves-light btn modal-trigger" :href="'#'+modal_id">
             Upload photo
         </a>
-        <div :id="'modal-photo-upload'+gallery_id" class="modal">
+        <div :id="modal_id" class="modal">
             <div class="modal-content">
                 <div v-if="!submited" class="upload-photo-form">
                     <h3>Upload photo</h3>
-                    <form class="" @submit.prevent="onSubmit">
-                        <p>
-                            <label for="name">Photo name:</label>
-                            <input :id="'photo-name-'+gallery_id" v-model="photo_name" placeholder="name">
-                        </p>
-                        <p>
-                            <button class="btn waves-effect waves-light" type="submit" name="action">
-                                Submit
-                                <i class="material-icons right">send</i>
-                            </button>
-                        </p>
-                    </form>
+                    <p>
+                        <label>Photo name:
+                            <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                        </label>
+                    </p>
+                    <p>
+                        <button v-on:click="submitFile()" class="btn waves-effect waves-light">
+                            Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </p>
                 </div>
                 <div v-else class="photo-upload-msg">
                     <p v-if="success" class="green-text">
@@ -41,27 +40,36 @@ export default {
     data() {
         return {
             photo_name: null,
-            display_form: false,
             submited: false,
             success: false,
+            modal_id: '',
+            file: ''
         };
     },
     mounted() {
+        this.modal_id = 'modal-photo-upload' + this.gallery_id;
         let elems = this.$el.querySelectorAll('.modal');
         // eslint-disable-next-line
         let instances = M.Modal.init(elems);
     },
     methods: {
-        onCreate() {
+        displayUploadPhoto() {
             this.photo_name = null;
             this.submited = false;
             this.success = false;
-            this.display_form = true;
         },
-        onSubmit() {
-            axios.post("http://localhost:5000/photo", {
-                file_name: this.photo_name,
-                gallery_id: this.gallery_id
+        handleFileUpload() {
+            this.file = this.$refs.file.files[0];
+        },
+        submitFile() {
+            let formData = new FormData();
+            formData.append('file', this.file);
+            formData.append('gallery_id', this.gallery_id)
+            axios.post("http://localhost:5000/photo",
+                formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             }).then(response => {
                 this.submited = true;
                 this.success = true;
