@@ -3,11 +3,7 @@ node_modules
 public
 /dist
 .browserslistrc
-.eslintrc.js
-babel.config.js
-postcss.config.js
 src/assets/
-
 
 # local env files
 .env.local
