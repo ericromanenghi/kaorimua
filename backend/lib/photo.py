@@ -39,3 +39,10 @@ def delete_photo(photo_id):
         current_app.logger.error(f'Could not delete gallery {photo.id}')
 
     return {'deleted': deleted}
+
+def get_by_gallery_id(gallery_id):
+    return {
+        "photos": list(map(
+            render_photo,
+            db_session.query(Photo).filter_by(gallery_id=gallery_id)
+    ))}

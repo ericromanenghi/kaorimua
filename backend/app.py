@@ -88,6 +88,10 @@ def get_gallery_by_id(gallery_id):
     else:
         return Response(json.dumps(gallery.get_gallery(gallery_id)), mimetype='application/json')
 
+@app.route('/gallery/<gallery_id>/photos', methods=['GET'])
+def get_photos_by_gallery_id(gallery_id):
+    return Response(json.dumps(gallery.get_gallery_photos(gallery_id)), mimetype='application/json')
+
 
 if __name__ == '__main__':
     db.init_db()

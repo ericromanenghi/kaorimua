@@ -2,6 +2,7 @@ from flask import current_app
 from .db.gallery import Gallery
 from .db.base import db_session
 from .renders import render_photo, render_gallery
+from . import photo
 
 def add_new_gallery(gallery_name):
     gallery = Gallery(name=gallery_name)
@@ -39,3 +40,6 @@ def delete_gallery(gallery_id):
         current_app.logger.error(f'Could not delete gallery {gallery.id}')
 
     return {'deleted': deleted}
+
+def get_gallery_photos(gallery_id):
+    return photo.get_by_gallery_id(gallery_id)
