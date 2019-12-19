@@ -1,8 +1,6 @@
 FROM node:10.15.0
  
 RUN mkdir /usr/src/app
-RUN mkdir /usr/src/static
-RUN mkdir /usr/src/static/img
 
 WORKDIR /usr/src/app
  

@@ -4,15 +4,18 @@
         <p v-if="active">
             <photo-upload :gallery_id="id"></photo-upload>
         </p>
+        <gallery-photos :gallery_id="id"></gallery-photos>
     </div>
 </template>
 
 <script>
 import PhotoUpload from './PhotoUpload.vue';
+import GalleryPhotos from './GalleryPhotos.vue';
 
 export default {
     components: {
-        PhotoUpload
+        PhotoUpload,
+        GalleryPhotos
     },
     props: ['name', 'id'],
     data() {

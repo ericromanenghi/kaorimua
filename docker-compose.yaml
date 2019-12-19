@@ -27,6 +27,6 @@ services:
             - HOST=0.0.0.0
         volumes:
             - ./admin:/usr/src/app
-            - ./static/img:/usr/app/static/img
+            - ./static/img:/usr/src/app/public/static/img
             - /usr/src/app/node_modules
 
