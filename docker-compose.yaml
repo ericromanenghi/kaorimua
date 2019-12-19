@@ -14,7 +14,7 @@ services:
         image: kaorimua/frontend
         build: ./frontend
         ports:
-            - "8000:80"
+            - "80:80"
         volumes:
             - ./frontend:/usr/share/nginx/html
             - ./static/img:/usr/share/nginx/html/static/img
@@ -22,7 +22,7 @@ services:
         image: kaorimua/admin
         build: ./admin
         ports:
-            - "80:8080"
+            - "8000:8080"
         environment:
             - HOST=0.0.0.0
         volumes:
