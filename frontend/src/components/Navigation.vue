@@ -16,6 +16,8 @@
 </template>
 
 <style scoped lang='scss'>
+@import './../scss/variables.scss';
+
 .navigation {
     align-items: flex-start;
     background: #fff;
@@ -51,10 +53,10 @@
     text-decoration: none;
 }
 .navigation__item--active {
-    color: #E65F9A;
+    color: $color-primary;
 }
 .navigation__item:hover {
-    color: #E65F9A;
+    color: $color-primary;
 }
 .navigation__contact {
     font-family: 'Merriweather', serif;
@@ -63,7 +65,7 @@
     margin: 0;
 }
 .navigation__contact a {
-    color: #E65F9A;
+    color: $color-primary;
 }
 .navigation__contact a:hover {
     text-decoration: none;
