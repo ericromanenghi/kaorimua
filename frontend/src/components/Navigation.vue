@@ -34,6 +34,11 @@ export default {
         toggleMenu () {
             alert('toggle')
         }
+    },
+    watch: {
+        $route() {
+            this.isMenuOpen = false
+        }
     }
 }
 </script>
