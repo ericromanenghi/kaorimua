@@ -2,7 +2,7 @@
     <div>
         <nav class='navigation' :class="{ 'navigation--active': isMenuOpen }">
             <router-link to='/'>
-                <img src='./../assets/logo.png' alt='Kaori. Makeup Artist'>
+                <img src='./../../assets/logo.png' alt='Kaori. Makeup Artist'>
             </router-link>
             <ul class='navigation__list'>
                 <li><router-link to='/about' class='navigation__item'>About me</router-link></li>
@@ -16,7 +16,7 @@
         </nav>
         <header class='header'>
             <router-link to='/' class='header__logo' :class="{ 'header__logo--hidden': isMenuOpen }">
-                <img src='./../assets/logo.png' alt='Kaori. Makeup Artist'>
+                <img src='./../../assets/logo.png' alt='Kaori. Makeup Artist'>
             </router-link>
             <button class='header__button' type='button' @click='isMenuOpen = !isMenuOpen'>Menu</button>
         </header>
@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-@import './../scss/variables.scss';
+@import './../../scss/variables.scss';
 
 .header {
     align-items: center;
