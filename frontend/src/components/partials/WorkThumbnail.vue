@@ -1,6 +1,8 @@
 <template>
     <div class='work__item work__item--menu' v-if='isMenuItem'></div>
-    <router-link v-else :to='workEnhanced.link' class='work__item' :style='workEnhanced.style'>{{ workEnhanced.title }}</router-link>
+    <router-link v-else :to='workEnhanced.link' class='work__item' :style='workEnhanced.style'>
+        <div>{{ workEnhanced.title }}</div>
+    </router-link>
 </template>
 
 <script>
@@ -22,20 +24,26 @@ export default {
 @import './../../scss/variables.scss';
 
 .work__item {
-    align-items: center;
     background-color: $color-secondary;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    color: #fff;
-    display: flex;
     flex: 0 0 auto;
-    font-size: 1.7em;
-    height: calc(100vh - 164px);
-    justify-content: center;
     margin-right: 10px;
     text-decoration: none;
     width: 300px;
+}
+.work__item > div {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    font-size: 1.7em;
+    height: calc(100vh - 164px);
+    justify-content: center;
+    transition: background .2s ease;
+}
+.work__item:hover > div {
+    background: rgba($color-secondary, .3);
 }
 .work__item--menu {
     display: none;
@@ -44,11 +52,13 @@ export default {
 @media screen and (min-width: 700px) {
     .work__item {
         flex: 0 0 auto;
+        margin-right: 15px;
+        width: 450px;
+    }
+    .work__item > div {
         font-size: 2.1em;
         font-weight: bold;
         height: calc(100vh - 30px);
-        margin-right: 15px;
-        width: 450px;
     }
     .work__item--menu {
         display: block;
