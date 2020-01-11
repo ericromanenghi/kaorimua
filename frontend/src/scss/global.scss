@@ -1,13 +1,4 @@
-* {
-    box-sizing: border-box;
-}
+@import "./variables.scss";
 
-body {
-    background: #fff;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    padding-left: 300px;
-}
+@import "./partials/body.scss";
+@import "./partials/container.scss";

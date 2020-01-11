@@ -1,22 +1,67 @@
 <template>
-    <nav class='navigation'>
-        <router-link to='/'>
-            <img src='./../assets/logo.png' alt='Kaori. Makeup Artist'>
-        </router-link>
-        <ul class='navigation__list'>
-            <li><router-link to='/about' class='navigation__item'>About me</router-link></li>
-            <li><router-link to='/work' class='navigation__item'>Work</router-link></li>
-            <li><router-link to='/contact' class='navigation__item'>Contact</router-link></li>
-        </ul>
-        <p class='navigation__contact'>
-            +31 614 395 295<br>
-            <a href='#'>info@kaorimua.nl</a>
-        </p>
-    </nav>
+    <div>
+        <nav class='navigation' :class="{ 'navigation--active': isMenuOpen }">
+            <router-link to='/'>
+                <img src='./../assets/logo.png' alt='Kaori. Makeup Artist'>
+            </router-link>
+            <ul class='navigation__list'>
+                <li><router-link to='/about' class='navigation__item'>About me</router-link></li>
+                <li><router-link to='/work' class='navigation__item'>Work</router-link></li>
+                <li><router-link to='/contact' class='navigation__item'>Contact</router-link></li>
+            </ul>
+            <p class='navigation__contact'>
+                +31 614 395 295<br>
+                <a href='#'>info@kaorimua.nl</a>
+            </p>
+        </nav>
+        <header class='header'>
+            <router-link to='/' class='header__logo' :class="{ 'header__logo--hidden': isMenuOpen }">
+                <img src='./../assets/logo.png' alt='Kaori. Makeup Artist'>
+            </router-link>
+            <button class='header__button' type='button' @click='isMenuOpen = !isMenuOpen'>Menu</button>
+        </header>
+    </div>
 </template>
+
+<script>
+export default {
+    data: function () {
+        return {
+            isMenuOpen: false,
+        }
+    },
+    methods: {
+        toggleMenu () {
+            alert('toggle')
+        }
+    }
+}
+</script>
 
 <style scoped lang='scss'>
 @import './../scss/variables.scss';
+
+.header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    width: 100%;
+}
+.header__logo {
+    transition: transform .2s linear;
+}
+.header__logo--hidden {
+    transform: translateX(-100px);
+}
+.header__logo img {
+    width: 100px;
+}
+.header__button {
+    background: transparent;
+    border: 0;
+    font-family: $font-family
+}
 
 .navigation {
     align-items: flex-start;
@@ -29,9 +74,14 @@
     left: 0;
     padding: 30px;
     position: fixed;
+    transition: transform .2s ease;
+    transform: translateX(-300px);
     top: 0;
     width: 300px;
     z-index: 9;
+}
+.navigation--active {
+    transform: translateX(0);
 }
 .navigation img {
     display: block;
@@ -46,7 +96,6 @@
 .navigation__item {
     color: #000;
     display: inline-block;
-    font-family: 'Merriweather', serif;
     font-size: 1.2em;
     font-weight: bold;
     padding: 5px 0;
@@ -59,7 +108,6 @@
     color: $color-primary;
 }
 .navigation__contact {
-    font-family: 'Merriweather', serif;
     font-size: .8em;
     line-height: 1.75;
     margin: 0;
@@ -69,5 +117,14 @@
 }
 .navigation__contact a:hover {
     text-decoration: none;
+}
+
+@media screen and (min-width: 700px) {
+    .header {
+        display: none;
+    }
+    .navigation {
+        transform: translateX(0);
+    }
 }
 </style>
