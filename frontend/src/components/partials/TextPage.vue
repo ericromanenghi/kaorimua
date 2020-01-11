@@ -1,7 +1,7 @@
 <template>
     <div class='container'>
         <div class='textpage'>
-            <div class='textpage__photo'>
+            <div class='textpage__photo' :style='style'>
                 <h1>{{ title }}</h1>
                 <ul class='textpage__links'>
                     <li><a href='#'>Instagram</a></li>
@@ -18,7 +18,12 @@
 
 <script>
 export default {
-    props: [ 'title' ]
+    props: [ 'title' ],
+    data: function () {
+        return {
+            style: `background-image: url(${process.env.BASE_URL}photos/kaori.jpg)`,
+        }
+    },
 }
 </script>
 
@@ -29,7 +34,10 @@ export default {
     padding: 10px;
 }
 .textpage__photo {
-    background: $color-secondary;
+    background-color: $color-secondary;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: block;
     padding: 110px 20px 30px;
 }

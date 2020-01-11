@@ -14,7 +14,7 @@ export default {
 @import './../../scss/variables.scss';
 
 .cover {
-    background-image: url(~@/assets/photo.jpg);
+    background-image: url(/photos/home/photo.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

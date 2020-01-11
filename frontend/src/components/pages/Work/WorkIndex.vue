@@ -18,19 +18,19 @@ export default {
             works: [{
                 slug: 'karolijn',
                 title: 'Karolijn',
-                photo: `${process.env.BASE_URL}photos/karolijn.jpg`,
+                photo: `${process.env.BASE_URL}photos/works/karolijn.jpg`,
             }, {
                 slug: 'aleksandra',
                 title: 'Aleksandra',
-                photo: `${process.env.BASE_URL}photos/aleksandra.jpg`,
+                photo: `${process.env.BASE_URL}photos/works/aleksandra.jpg`,
             }, {
                 slug: 'monica',
                 title: 'Monica',
-                photo: `${process.env.BASE_URL}photos/monica.jpg`,
+                photo: `${process.env.BASE_URL}photos/works/monica.jpg`,
             }, {
                 slug: 'magda',
                 title: 'Magda',
-                photo: `${process.env.BASE_URL}photos/magda.jpg`,
+                photo: `${process.env.BASE_URL}photos/works/magda.jpg`,
             }]
         }
     },
