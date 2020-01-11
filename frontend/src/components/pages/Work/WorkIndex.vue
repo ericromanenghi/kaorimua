@@ -2,23 +2,50 @@
     <div>
         <div class='work'>
             <div class='work__list' ref='list'>
-                <div class='work__item work__item--menu'>(menu)</div>
-                <div class='work__item'>Box 1</div>
-                <div class='work__item'>Box 2</div>
-                <div class='work__item'>Box 3</div>
-                <div class='work__item'>Box 4</div>
-                <div class='work__item'>Box 5</div>
-                <div class='work__item'>Box 6</div>
+                <WorkThumbnail isMenuItem='1' />
+                <WorkThumbnail v-for='work in works' v-bind:key='work.slug' :work=work />
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import WorkThumbnail from './../../partials/WorkThumbnail'
+
 export default {
+    data: function () {
+        return {
+            works: [{
+                slug: 'karolijn',
+                title: 'Karolijn',
+                photo: `${process.env.BASE_URL}photos/karolijn.jpg`,
+            }, {
+                slug: 'aleksandra',
+                title: 'Aleksandra',
+                photo: `${process.env.BASE_URL}photos/aleksandra.jpg`,
+            }, {
+                slug: 'monica',
+                title: 'Monica',
+                photo: `${process.env.BASE_URL}photos/monica.jpg`,
+            }, {
+                slug: 'magda',
+                title: 'Magda',
+                photo: `${process.env.BASE_URL}photos/magda.jpg`,
+            }]
+        }
+    },
+    components: {
+        WorkThumbnail,
+    },
     methods: {
         resizeBody () {
-            document.body.style.height = this.$refs.list.scrollWidth + 'px'
+            if (window.innerWidth > 700) {
+                document.body.style.height = this.$refs.list.scrollWidth + 'px'
+                window.addEventListener('scroll', this.handleScroll)
+            } else {
+                document.body.style.height = 'auto'
+                window.removeEventListener('scroll', this.handleScroll)
+            }
         },
         handleScroll () {
             const percentageScrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight)
@@ -28,7 +55,6 @@ export default {
     mounted () {
         this.resizeBody()
         window.addEventListener('resize', this.resizeBody)
-        window.addEventListener('scroll', this.handleScroll)
     },
     destroyed () {
         document.body.style.height = 'auto'
@@ -38,30 +64,33 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
+@import './../../../scss/variables.scss';
+
 .work {
-    background: #efefef;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+    height: calc(100vh - 164px);
+    margin: 10px;
+    overflow-x: auto;
 }
 .work__list {
     display: flex;
     flex-wrap: nowrap;
 }
-.work__item {
-    flex: 0 0 auto;
-    height: 100vh;
-    width: 400px;
-}
-.work__item--menu {
-    visibility: hidden;
-    width: 300px;
-}
-.work__item:nth-child(2n) {
-    background: rgba(0, 0, 0, .05);
+
+@media screen and (min-width: 700px) {
+    .work {
+        height: 100%;
+        left: 0;
+        overflow: hidden;
+        margin: 15px 15px 15px 0;
+        padding-right: 15px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+    .work__list {
+        display: flex;
+        flex-wrap: nowrap;
+    }
 }
 </style>
