@@ -104,10 +104,26 @@ export default {
     font-size: 1.2em;
     font-weight: bold;
     padding: 5px 0;
+    position: relative;
     text-decoration: none;
+}
+.navigation__item:after {
+    background: $color-primary;
+    border-radius: 4px;
+    content: '';
+    display: block;
+    height: 2px;
+    left: calc(100% + 10px);
+    position: absolute;
+    top: 50%;
+    transition: width .2s ease;
+    width: 0;
 }
 .navigation__item--active {
     color: $color-primary;
+}
+.navigation__item--active:after {
+    width: 40px;
 }
 .navigation__item:hover {
     color: $color-primary;
