@@ -1,0 +1,28 @@
+@import '../variables.scss';
+
+.work {
+    height: calc(100vh - 164px);
+    margin: 10px;
+    overflow-x: auto;
+}
+.work__list {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+@media screen and (min-width: 700px) {
+    .work {
+        height: 100%;
+        left: 0;
+        overflow: hidden;
+        margin: 15px 15px 15px 0;
+        padding-right: 15px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+    .work__list {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+}

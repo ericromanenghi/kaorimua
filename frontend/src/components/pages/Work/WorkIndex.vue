@@ -1,16 +1,17 @@
 <template>
     <div>
         <div class='work'>
-            <div class='work__list' ref='list'>
+            <HorizontalPage class='work__list'>
                 <WorkThumbnail isMenuItem='1' />
                 <WorkThumbnail v-for='work in works' v-bind:key='work.slug' :work=work />
-            </div>
+            </HorizontalPage>
         </div>
     </div>
 </template>
 
 <script>
 import WorkThumbnail from './../../partials/WorkThumbnail'
+import HorizontalPage from './../../partials/HorizontalPage'
 
 export default {
     data: function () {
@@ -36,61 +37,9 @@ export default {
     },
     components: {
         WorkThumbnail,
+        HorizontalPage,
     },
-    methods: {
-        resizeBody () {
-            if (window.innerWidth > 700) {
-                document.body.style.height = this.$refs.list.scrollWidth + 'px'
-                window.addEventListener('scroll', this.handleScroll)
-            } else {
-                document.body.style.height = 'auto'
-                window.removeEventListener('scroll', this.handleScroll)
-            }
-        },
-        handleScroll () {
-            const percentageScrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight)
-            this.$refs.list.style.transform = 'translateX(-' + (percentageScrolled * (this.$refs.list.scrollWidth - window.innerWidth)) + 'px)'
-        }
-    },
-    mounted () {
-        this.resizeBody()
-        window.addEventListener('resize', this.resizeBody)
-    },
-    destroyed () {
-        document.body.style.height = 'auto'
-        window.removeEventListener('resize', this.resizeBody)
-        window.removeEventListener('scroll', this.handleScroll)
-    }
 }
 </script>
 
-<style lang='scss' scoped>
-@import './../../../scss/variables.scss';
-
-.work {
-    height: calc(100vh - 164px);
-    margin: 10px;
-    overflow-x: auto;
-}
-.work__list {
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-@media screen and (min-width: 700px) {
-    .work {
-        height: 100%;
-        left: 0;
-        overflow: hidden;
-        margin: 15px 15px 15px 0;
-        padding-right: 15px;
-        position: fixed;
-        top: 0;
-        width: 100%;
-    }
-    .work__list {
-        display: flex;
-        flex-wrap: nowrap;
-    }
-}
-</style>
+<style lang='scss' src="@/scss/work/list.scss" scoped></style>
