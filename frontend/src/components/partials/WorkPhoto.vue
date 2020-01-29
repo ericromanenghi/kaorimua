@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import { EventBus } from './../eventBus.js';
+
 export default {
     props: [ 'photo' ],
     data: function () {
@@ -29,6 +31,9 @@ export default {
         },
         resize () {
             this.styles = this.calculateStyles()
+            setTimeout(() => {
+                EventBus.$emit('workPhoto:resized')
+            }, 5)
         }
     },
     mounted () {

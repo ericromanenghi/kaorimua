@@ -5,6 +5,9 @@
 </template>
 
 <script>
+import { EventBus } from './../eventBus.js'
+import throttle from './../throttle.js'
+
 export default {
     methods: {
         resizeBody () {
@@ -24,6 +27,9 @@ export default {
     mounted () {
         this.resizeBody()
         window.addEventListener('resize', this.resizeBody)
+        EventBus.$on('workPhoto:resized', throttle(() => {
+            this.resizeBody()
+        }, 200))
     },
     destroyed () {
         document.body.style.height = 'auto'
