@@ -1,13 +1,9 @@
 @import '../variables.scss';
 
-.work {
-    height: calc(100vh - 164px);
-    margin: 10px;
-    overflow-x: auto;
-}
 .work__list {
     display: flex;
-    flex-wrap: nowrap;
+    flex-direction: column;
+    padding: 10px;
 }
 
 @media screen and (min-width: 700px) {
@@ -23,6 +19,8 @@
     }
     .work__list {
         display: flex;
+        flex-direction: row;
         flex-wrap: nowrap;
+        padding: 0 15px 0 0;
     }
 }

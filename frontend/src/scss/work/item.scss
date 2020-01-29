@@ -5,10 +5,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    flex: 0 0 auto;
-    margin-right: 10px;
+    margin-bottom: 10px;
     text-decoration: none;
-    width: 300px;
+    width: 100%;
 }
 .work__item > div {
     align-items: center;
@@ -29,6 +28,7 @@
 @media screen and (min-width: 700px) {
     .work__item {
         flex: 0 0 auto;
+        margin-bottom: 0;
         margin-right: 15px;
         width: 450px;
     }

@@ -1,5 +1,5 @@
 <template>
-    <div class='photo' :style='{ width: width, backgroundImage: `url(${photo.src})` }'></div>
+    <div class='photo' :style='styles'></div>
 </template>
 
 <script>
@@ -7,15 +7,28 @@ export default {
     props: [ 'photo' ],
     data: function () {
         return {
-            width: '0px',
+            styles: '',
         }
     },
     methods: {
-        calculateWidth () {
-            return `${this.photo.ratio / 100 * this.$el.clientHeight}px`
+        calculateStyles () {
+            if (window.innerWidth > 700) {
+                return {
+                    backgroundImage: `url(${this.photo.src})`,
+                    width: `${this.photo.ratio / 100 * this.$el.clientHeight}px`,
+                }
+            } else {
+                return {
+                    width: '100%',
+                    height: '0',
+                    paddingBottom: `${100 / this.photo.ratio * 100}%`,
+                    backgroundImage: `url(${this.photo.src})`,
+                }
+            }
+            
         },
         resize () {
-            this.width = this.calculateWidth()
+            this.styles = this.calculateStyles()
         }
     },
     mounted () {

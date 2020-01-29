@@ -5,8 +5,8 @@
     background-repeat: no-repeat;
     background-position: center center;
     flex: 0 0 auto;
-    margin-right: 10px;
-    width: 300px;
+    height: 300px;
+    margin-bottom: 10px;
 }
 
 .work__description > div {
@@ -17,7 +17,7 @@
 .work__description > div {
     align-items: flex-start;
     display: flex;
-    height: calc(100vh - 164px);
+    height: 300px;
     flex-direction: column;
     justify-content: flex-end;
     padding: 50px;
@@ -37,8 +37,15 @@
 }
 
 @media screen and (min-width: 700px) {
+    .work__description {
+        height: calc(100vh - 30px);
+        margin-bottom: 0;
+        margin-right: 10px;
+        width: 300px;
+    }
     .work__description > div {
         height: calc(100vh - 30px);
+        
     }
 }
 
