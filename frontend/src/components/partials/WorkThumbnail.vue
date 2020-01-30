@@ -1,7 +1,7 @@
 <template>
     <div class='work__item work__item--menu' v-if='isMenuItem'></div>
     <router-link v-else :to='workEnhanced.link' class='work__item' :style='workEnhanced.style'>
-        <div>{{ workEnhanced.title }}</div>
+        <div>{{ workEnhanced.name }}</div>
     </router-link>
 </template>
 
@@ -12,8 +12,8 @@ export default {
         workEnhanced: function () {
             return {
                 ...this.work,
-                link: `/work/${this.work.slug}`,
-                style: `background-image: url(${this.work.photo})`,
+                link: `/work/${this.work.id}`,
+                style: `background-image: url(${this.work.src})`,
             }
         }
     }

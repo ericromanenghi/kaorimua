@@ -16,29 +16,27 @@ import HorizontalPage from './../../partials/HorizontalPage'
 export default {
     data: function () {
         return {
-            works: [{
-                slug: 'karolijn',
-                title: 'Karolijn',
-                photo: `${process.env.BASE_URL}photos/works/karolijn.jpg`,
-            }, {
-                slug: 'aleksandra',
-                title: 'Aleksandra',
-                photo: `${process.env.BASE_URL}photos/works/aleksandra.jpg`,
-            }, {
-                slug: 'monica',
-                title: 'Monica',
-                photo: `${process.env.BASE_URL}photos/works/monica.jpg`,
-            }, {
-                slug: 'magda',
-                title: 'Magda',
-                photo: `${process.env.BASE_URL}photos/works/magda.jpg`,
-            }]
+            endpoint: `${process.env.VUE_APP_API_URL}gallery/all`,
+            works: []
         }
     },
     components: {
         WorkThumbnail,
         HorizontalPage,
     },
+    methods: {
+        renderPhotos (response) {
+            this.works = response.data.galleries.map(work => {
+                return {
+                    ...work,
+                    src: `${process.env.VUE_APP_API_IMAGE_BASE}${work.photos[0].filename}`
+                }
+            })
+        }
+    },
+    mounted () {
+        this.$http.get(this.endpoint).then(this.renderPhotos)
+    }
 }
 </script>
 

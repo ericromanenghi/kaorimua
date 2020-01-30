@@ -19,26 +19,9 @@ import WorkDescription from './../../partials/WorkDescription'
 export default {
     data () {
         return {
-            work: {
-                title: 'Karolijn',
-                src: `${process.env.BASE_URL}photos/works/karolijn.jpg`,
-                makeup: 'Kaori',
-                model: 'Karolijn',
-                photographer: 'Celia',
-            },
-            photos: [{
-                ratio: 66.6666,
-                src: `${process.env.BASE_URL}photos/works/karolijn.jpg`,
-            }, {
-                ratio: 125,
-                src: `${process.env.BASE_URL}photos/works/aleksandra.jpg`,
-            }, {
-                ratio: 125,
-                src: `${process.env.BASE_URL}photos/works/monica.jpg`,
-            }, {
-                ratio: 75,
-                src: `${process.env.BASE_URL}photos/works/magda.jpg`,
-            }],
+            endpoint: `${process.env.VUE_APP_API_URL}gallery/${this.$route.params.id}`,
+            work: {},
+            photos: [],
         }
     },
     components: {
@@ -47,6 +30,24 @@ export default {
         WorkDescription,
         HorizontalPage,
     },
+    methods: {
+        renderPhotos (response) {
+            const data = response.data.gallery
+            this.photos = data.photos.map(photo => {
+                return {
+                    src: `${process.env.VUE_APP_API_IMAGE_BASE}${photo.filename}`,
+                    ratio: 66.6666
+                }
+            })
+            this.work = {
+                name: data.name,
+                src: `${this.photos[0].src}`,
+            }
+        }
+    },
+    mounted () {
+        this.$http.get(this.endpoint).then(this.renderPhotos)
+    }
 }
 </script>
 
