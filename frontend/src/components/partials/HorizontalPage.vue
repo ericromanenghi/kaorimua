@@ -12,8 +12,10 @@ export default {
     methods: {
         resizeBody () {
             if (window.innerWidth > 700) {
-                document.body.style.height = this.$el.scrollWidth + 'px'
-                window.addEventListener('scroll', this.handleScroll)
+                if (this.$el.scrollWidth > window.innerWidth) {
+                    document.body.style.height = this.$el.scrollWidth + 'px'
+                    window.addEventListener('scroll', this.handleScroll)
+                }
             } else {
                 document.body.style.height = 'auto'
                 window.removeEventListener('scroll', this.handleScroll)
