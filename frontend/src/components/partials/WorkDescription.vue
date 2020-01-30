@@ -1,5 +1,5 @@
 <template>
-    <div class='work__description' :style='{ backgroundImage: `url(${work.src})` }'>
+    <div class='work__description'>
         <div>
             <h2>{{ work.name }}</h2>
             <!-- <p>
