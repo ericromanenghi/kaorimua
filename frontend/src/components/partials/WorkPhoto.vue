@@ -1,5 +1,7 @@
 <template>
-    <div class='photo' :style='styles'></div>
+    <div class='photo' :style='styles'>
+        <img :src='photo.src' alt='' role='presentation'>
+    </div>
 </template>
 
 <script>
@@ -16,7 +18,6 @@ export default {
         calculateStyles () {
             if (window.innerWidth > 700) {
                 return {
-                    backgroundImage: `url(${this.photo.src})`,
                     width: `${this.photo.ratio / 100 * this.$el.clientHeight}px`,
                 }
             } else {
@@ -24,7 +25,6 @@ export default {
                     width: '100%',
                     height: '0',
                     paddingBottom: `${100 / this.photo.ratio * 100}%`,
-                    backgroundImage: `url(${this.photo.src})`,
                 }
             }
             
