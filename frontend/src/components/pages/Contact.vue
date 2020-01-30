@@ -29,44 +29,4 @@ export default {
 }
 </script>
 
-<style scoped lang='scss'>
-@import './../../scss/variables.scss';
-
-.contact {
-    list-style: none;
-    margin: 25px 0;
-    padding: 0;
-}
-.contact li {
-    font-size: .8em;
-    margin-bottom: 15px;
-}
-.contact__name {
-    display: block;
-    margin-bottom: 5px;
-}
-.contact__value {
-    font-size: 1.1em;
-}
-.contact a {
-    color: $color-primary;
-}
-.contact a:hover {
-    text-decoration: none;
-}
-
-@media screen and (min-width: 700px) {
-    .contact li {
-        align-items: center;
-        display: flex;
-        font-size: .9em;
-    }
-    .contact__name {
-        margin-bottom: 0;
-        width: 110px;
-    }
-    .contact__value {
-        font-size: 1em;
-    }
-}
-</style>
+<style scoped lang='scss' src=@/scss/contact.scss></style>
