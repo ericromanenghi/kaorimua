@@ -12,17 +12,29 @@ export const routes = [
     { 
         path: '/about', 
         component: About,
+        meta: {
+            title: 'About'
+        }
     },
     { 
         path: '/work', 
         component: WorkIndex,
+        meta: {
+            title: 'Work'
+        }
     },
     {
         path: '/work/:id',
         component: WorkShow,
+        meta: {
+            title: 'Work'
+        }
     },
     { 
         path: '/contact', 
         component: Contact,
+        meta: {
+            title: 'Contact'
+        }
     }
 ]
