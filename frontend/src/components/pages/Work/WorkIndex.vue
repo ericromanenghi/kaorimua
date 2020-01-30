@@ -12,6 +12,7 @@
 <script>
 import WorkThumbnail from './../../partials/WorkThumbnail'
 import HorizontalPage from './../../partials/HorizontalPage'
+import { EventBus } from '../../eventBus'
 
 export default {
     data: function () {
@@ -26,6 +27,7 @@ export default {
     },
     methods: {
         renderPhotos (response) {
+            EventBus.$emit('loading:end')
             this.works = response.data.galleries.map(work => {
                 return {
                     ...work,
@@ -35,6 +37,7 @@ export default {
         }
     },
     mounted () {
+        EventBus.$emit('loading:start')
         this.$http.get(this.endpoint).then(this.renderPhotos)
     }
 }

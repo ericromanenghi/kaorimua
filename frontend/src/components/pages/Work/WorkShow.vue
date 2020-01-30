@@ -15,6 +15,7 @@ import WorkThumbnail from './../../partials/WorkThumbnail'
 import HorizontalPage from './../../partials/HorizontalPage'
 import WorkPhoto from './../../partials/WorkPhoto'
 import WorkDescription from './../../partials/WorkDescription'
+import { EventBus } from '../../eventBus'
 
 export default {
     data () {
@@ -32,6 +33,7 @@ export default {
     },
     methods: {
         renderPhotos (response) {
+            EventBus.$emit('loading:end')
             const data = response.data.gallery
             this.photos = data.photos.map(photo => {
                 return {
@@ -46,6 +48,7 @@ export default {
         }
     },
     mounted () {
+        EventBus.$emit('loading:start')
         this.$http.get(this.endpoint).then(this.renderPhotos)
     }
 }

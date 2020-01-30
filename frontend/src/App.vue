@@ -1,5 +1,6 @@
 <template>
     <div id='app'>
+        <Loading />
         <Navigation />
         <transition
             name='fade'
@@ -12,11 +13,13 @@
 
 <script>
 import Navigation from './components/partials/Navigation'
+import Loading from './components/partials/Loading'
 
 export default {
     name: 'app',
     components: {
-        Navigation
+        Navigation,
+        Loading,
     },
     watch: {
         '$route': {

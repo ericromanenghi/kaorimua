@@ -1,0 +1,43 @@
+@import './../variables.scss';
+
+@keyframes loading {
+    from {
+        transform: translateX(-300px);
+    }
+
+    to {
+        transform: translateX(100vw);
+    }
+}
+
+.loading {
+    background: rgba($color-secondary, .3);
+    height: 5px;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transition: height .2s linear;
+    width: 100%;
+    z-index: 11;
+}
+.loading:after {
+    animation-duration: 1.5s;
+    animation-name: loading;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    background: $color-primary;
+    content: '';
+    display: block;
+    height: 100%;
+    transform: translateX(-300px);
+    width: 300px;
+}
+.loading.is-hidden {
+    height: 0;
+}
+
+@media screen and (min-width: 700px) {
+    .loading:after {
+        animation-duration: 2s;
+    }
+}
