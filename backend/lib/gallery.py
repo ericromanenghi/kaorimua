@@ -1,4 +1,5 @@
 from flask import current_app
+
 from .db.gallery import Gallery
 from .db.base import db_session
 from .renders import render_photo, render_gallery

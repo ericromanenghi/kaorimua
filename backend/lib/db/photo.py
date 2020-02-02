@@ -5,7 +5,7 @@ class Photo(Base):
     __tablename__ = 'photos'
 
     id = Column(Integer, primary_key=True)
-    filename = Column(String)
+    filename = Column(String, unique=True)
     width = Column(Integer)
     height = Column(Integer)
     gallery_id = Column(Integer, ForeignKey('galleries.id'))

@@ -3,6 +3,8 @@ import json
 from flask import Flask, request, Response
 from flask_cors import CORS
 
+from sqlalchemy.exc import IntegrityError
+
 app = Flask(__name__, instance_relative_config=True)
 CORS(app)
 
@@ -56,7 +58,6 @@ def process_photo_request():
     return Response(json.dumps({'filename': filename}), mimetype='application/json')
 
 
-
 @app.route('/photo/<photo_id>', methods=['GET'])
 def get_photo_by_id(photo_id):
     if photo_id == 'all':
@@ -73,8 +74,13 @@ def create_gallery():
     params = request.get_json()
     if 'gallery_name' not in params:
         return 'bad request!', 400
+
     gallery_name = params['gallery_name']
-    response = gallery.add_new_gallery(gallery_name)
+
+    try:
+        response = gallery.add_new_gallery(gallery_name)
+    except IntegrityError as e:
+        return 'Something went wrong. It seems like you chose an already existing gallery name, please try with another one.', 500
     return Response(json.dumps(response), mimetype='application/json')
 
 @app.route('/gallery/<gallery_id>', methods=['DELETE'])

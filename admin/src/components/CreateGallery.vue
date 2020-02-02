@@ -10,7 +10,7 @@
                     <form class="add-gallery" @submit.prevent="onSubmit">
                         <p>
                             <label for="name">Gallery name:</label>
-                            <input id="name" v-model="name" placeholder="name">
+                            <input id="name" v-model="name" placeholder="name" autocomplete="off">
                         </p>
                         <p>
                             <button class="btn waves-effect waves-light" type="submit" name="action">
@@ -25,7 +25,7 @@
                         <i class="material-icons left">check</i>Gallery created!
                     </p>
                     <p v-else class="red-text">
-                        <i class="material-icons left">error</i>Something went wrong, please try again =S
+                        <i class="material-icons left">error</i>{{ errorMsg }}
                     </p>
                 </div>
             </div>
@@ -42,6 +42,7 @@
                 name: null,
                 submited: false,
                 success: false,
+                errorMsg: 'Something went wrong, please try again =S',
             }
         },
         mounted() {
@@ -54,6 +55,7 @@
                 this.name = null;
                 this.submited = false;
                 this.success = false;
+                this.errorMsg = 'Something went wrong, please try again =S';
             },
             onSubmit() {
                 axios.post("http://localhost:5000/gallery", {
@@ -65,7 +67,7 @@
                 }).catch(error => {
                     this.submited = true;
                     this.success = false;
-                    console.log(error);
+                    this.errorMsg = error.response.data;
                 });
             }
         }

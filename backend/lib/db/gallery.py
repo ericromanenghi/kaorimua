@@ -7,7 +7,7 @@ class Gallery(Base):
     __tablename__ = 'galleries'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    name = Column(String, unique=True)
     photos = relationship(
     	"Photo",
     	order_by = Photo.id,
