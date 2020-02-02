@@ -12,5 +12,6 @@ def render_gallery(gallery):
     return {
         'id': gallery.id,
         'name': gallery.name,
+        'slug': gallery.slug,
         'photos': list(map(render_photo, gallery.photos))
     }

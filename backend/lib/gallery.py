@@ -1,4 +1,5 @@
 from flask import current_app
+from slugify import slugify
 
 from .db.gallery import Gallery
 from .db.base import db_session
@@ -6,7 +7,9 @@ from .renders import render_photo, render_gallery
 from . import photo
 
 def add_new_gallery(gallery_name):
-    gallery = Gallery(name=gallery_name)
+    slug = slugify(gallery_name)
+
+    gallery = Gallery(name=gallery_name, slug=slug)
 
     db_session.add(gallery)
     db_session.commit()

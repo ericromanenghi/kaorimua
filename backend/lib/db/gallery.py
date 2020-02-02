@@ -8,6 +8,7 @@ class Gallery(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
+    slug = Column(String, unique=True)
     photos = relationship(
     	"Photo",
     	order_by = Photo.id,
