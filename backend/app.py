@@ -76,9 +76,11 @@ def create_gallery():
         return 'bad request!', 400
 
     gallery_name = params['gallery_name']
+    photographer = params['photographer'] if 'photographer' in params else None
+    model = params['model'] if 'model' in params else None
 
     try:
-        response = gallery.add_new_gallery(gallery_name)
+        response = gallery.add_new_gallery(gallery_name, photographer, model)
     except IntegrityError as e:
         return 'Something went wrong. It seems like you chose an already existing gallery name, please try with another one.', 500
     return Response(json.dumps(response), mimetype='application/json')

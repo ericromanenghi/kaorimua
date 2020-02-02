@@ -10,7 +10,15 @@
                     <form class="add-gallery" @submit.prevent="onSubmit">
                         <p>
                             <label for="name">Gallery name:</label>
-                            <input id="name" v-model="name" placeholder="name" autocomplete="off">
+                            <input id="name" v-model="name" placeholder="name" autocomplete="off" required="" aria-required="true">
+                        </p>
+                        <p>
+                            <label for="photographer">Photographer:</label>
+                            <input id="photographer" v-model="photographer" placeholder="photographer">
+                        </p>
+                        <p>
+                            <label for="name">Model:</label>
+                            <input id="model" v-model="model" placeholder="model">
                         </p>
                         <p>
                             <button class="btn waves-effect waves-light" type="submit" name="action">
@@ -40,6 +48,8 @@
         data() {
             return {
                 name: null,
+                photographer: null,
+                model: null,
                 submited: false,
                 success: false,
                 errorMsg: 'Something went wrong, please try again =S',
@@ -53,13 +63,17 @@
         methods: {
             onCreate() {
                 this.name = null;
+                this.photographer = null;
+                this.model = null;
                 this.submited = false;
                 this.success = false;
                 this.errorMsg = 'Something went wrong, please try again =S';
             },
             onSubmit() {
                 axios.post("http://localhost:5000/gallery", {
-                    gallery_name: this.name 
+                    gallery_name: this.name,
+                    photographer: this.photographer,
+                    model: this.model 
                 }).then(response => {
                     this.submited = true;
                     this.success = true;

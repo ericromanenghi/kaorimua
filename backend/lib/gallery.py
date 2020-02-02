@@ -6,10 +6,15 @@ from .db.base import db_session
 from .renders import render_photo, render_gallery
 from . import photo
 
-def add_new_gallery(gallery_name):
+def add_new_gallery(gallery_name, photographer=None, model=None):
     slug = slugify(gallery_name)
 
-    gallery = Gallery(name=gallery_name, slug=slug)
+    gallery = Gallery(
+        name=gallery_name,
+        slug=slug,
+        photographer=photographer,
+        model=model
+    )
 
     db_session.add(gallery)
     db_session.commit()

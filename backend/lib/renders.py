@@ -13,5 +13,7 @@ def render_gallery(gallery):
         'id': gallery.id,
         'name': gallery.name,
         'slug': gallery.slug,
+        'photographer': gallery.photographer if gallery.photographer else '',
+        'model': gallery.model if gallery.model else '',
         'photos': list(map(render_photo, gallery.photos))
     }

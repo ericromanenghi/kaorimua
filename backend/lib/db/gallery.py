@@ -7,8 +7,10 @@ class Gallery(Base):
     __tablename__ = 'galleries'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, unique=True)
-    slug = Column(String, unique=True)
+    name = Column(String, unique=True, nullable=False)
+    slug = Column(String, unique=True, nullable=False)
+    photographer = Column(String, nullable=True)
+    model = Column(String, nullable=True)
     photos = relationship(
     	"Photo",
     	order_by = Photo.id,

@@ -10,7 +10,12 @@ from .file_utils import get_full_path
 def add_new_photo(filename, gallery_id):
     width, height = _get_photo_size(filename)
 
-    photo = Photo(filename=filename, width=width, height=height, gallery_id=gallery_id)
+    photo = Photo(
+        filename=filename,
+        width=width,
+        height=height,
+        gallery_id=gallery_id
+    )
 
     db_session.add(photo)
     db_session.commit()
