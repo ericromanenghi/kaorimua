@@ -21,4 +21,7 @@ def secure_filename(filename):
     return '.'.join([str(uuid.uuid4()), extension])
 
 def save_file(file, filename):
-    file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+    file.save(get_full_path(filename))
+
+def get_full_path(filename):
+    return os.path.join(current_app.config['UPLOAD_FOLDER'], filename)

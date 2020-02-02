@@ -1,8 +1,10 @@
 def render_photo(photo):
-	return {
-		'id': photo.id,
-		'filename': photo.filename,
-		'gallery_id': photo.gallery_id
+    return {
+        'id': photo.id,
+        'filename': photo.filename,
+        'width': photo.width,
+        'height': photo.height,
+        'gallery_id': photo.gallery_id
     }
 
 

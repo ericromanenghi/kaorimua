@@ -6,5 +6,7 @@ class Photo(Base):
 
     id = Column(Integer, primary_key=True)
     filename = Column(String)
+    width = Column(Integer)
+    height = Column(Integer)
     gallery_id = Column(Integer, ForeignKey('galleries.id'))
 
