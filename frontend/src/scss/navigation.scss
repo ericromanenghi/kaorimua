@@ -17,9 +17,16 @@
     width: 100px;
 }
 .header__button {
-    background: transparent;
+    background: url(../assets/menu.png) no-repeat left center transparent;
+    background-size: 21px auto;
     border: 0;
-    font-family: $font-family
+    color: $color-primary;
+    font-family: $font-family;
+    font-size: .8em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding-left: 28px;
+    text-transform: uppercase;
 }
 
 .navigation {
