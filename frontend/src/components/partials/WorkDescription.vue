@@ -2,11 +2,10 @@
     <div class='work__description'>
         <div>
             <h2>{{ work.name }}</h2>
-            <!-- <p>
+            <p>
                 Model: {{ work.model }}<br>
-                Photographer: {{ work.photographer }}<br>
-                Make up: {{ work.makeup }}
-            </p> -->
+                Photographer: {{ work.photographer }}
+            </p>
         </div>
     </div>
 </template>

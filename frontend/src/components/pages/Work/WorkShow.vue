@@ -38,11 +38,11 @@ export default {
             this.photos = data.photos.map(photo => {
                 return {
                     src: `${process.env.VUE_APP_API_IMAGE_BASE}${photo.filename}`,
-                    ratio: 66.6666
+                    ratio: photo.width / photo.height * 100,
                 }
             })
             this.work = {
-                name: data.name,
+                ...data,
                 src: `${this.photos[0].src}`,
             }
         }
