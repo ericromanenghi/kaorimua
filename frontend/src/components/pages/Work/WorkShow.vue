@@ -1,12 +1,13 @@
 <template>
     <div>
-        <div class='work'>
+        <div class='work' v-if='!displayError'>
             <HorizontalPage class='work__list'>
                 <WorkThumbnail isMenuItem='1' />
                 <WorkDescription :work='work'/>
                 <WorkPhoto v-for='photo in photos' v-bind:key='photo.src' :photo=photo />
             </HorizontalPage>
         </div>
+        <PageError v-if='displayError' />
     </div>
 </template>
 
@@ -15,6 +16,7 @@ import WorkThumbnail from './../../partials/WorkThumbnail'
 import HorizontalPage from './../../partials/HorizontalPage'
 import WorkPhoto from './../../partials/WorkPhoto'
 import WorkDescription from './../../partials/WorkDescription'
+import PageError from './../../partials/PageError'
 import { EventBus } from '../../eventBus'
 
 export default {
@@ -23,6 +25,7 @@ export default {
             endpoint: `${process.env.VUE_APP_API_URL}gallery/${this.$route.params.id}`,
             work: {},
             photos: [],
+            displayError: false,
         }
     },
     components: {
@@ -30,6 +33,7 @@ export default {
         WorkPhoto,
         WorkDescription,
         HorizontalPage,
+        PageError,
     },
     methods: {
         renderPhotos (response) {
@@ -45,11 +49,15 @@ export default {
                 ...data,
                 src: `${this.photos[0].src}`,
             }
-        }
+        },
+        handleError () {
+            EventBus.$emit('loading:end')
+            this.displayError = true
+        },
     },
     mounted () {
         EventBus.$emit('loading:start')
-        this.$http.get(this.endpoint).then(this.renderPhotos)
+        this.$http.get(this.endpoint).then(this.renderPhotos).catch(this.handleError)
     }
 }
 </script>

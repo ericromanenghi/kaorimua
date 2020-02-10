@@ -1,29 +1,33 @@
 <template>
     <div>
-        <div class='work'>
+        <div class='work' v-if='!displayError'>
             <HorizontalPage class='work__list'>
                 <WorkThumbnail isMenuItem='1' />
                 <WorkThumbnail v-for='work in works' v-bind:key='work.slug' :work=work />
             </HorizontalPage>
         </div>
+        <PageError v-if='displayError' />
     </div>
 </template>
 
 <script>
 import WorkThumbnail from './../../partials/WorkThumbnail'
 import HorizontalPage from './../../partials/HorizontalPage'
+import PageError from './../../partials/PageError'
 import { EventBus } from '../../eventBus'
 
 export default {
     data: function () {
         return {
             endpoint: `${process.env.VUE_APP_API_URL}gallery/all`,
-            works: []
+            works: [],
+            displayError: false,
         }
     },
     components: {
         WorkThumbnail,
         HorizontalPage,
+        PageError,
     },
     methods: {
         renderPhotos (response) {
