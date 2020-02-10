@@ -7,7 +7,7 @@ Source code for [kaorimua.nl](http://kaorimua.nl).
 
 ## Architecture
 The website consists in three services:
-  * Frontend (not implemnted yet)
+  * Frontend (vue.js application to browse galleries and text pages)
   * Admin (vue.js application to create galleries and upload photos)
   * Backend (REST API implemented in flask to interact both with the frontend service and admin)
 
