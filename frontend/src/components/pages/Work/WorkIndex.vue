@@ -38,6 +38,9 @@ export default {
                     src: `${process.env.VUE_APP_API_IMAGE_BASE}${work.photos[0].filename}`
                 }
             })
+            setTimeout(() => {
+                EventBus.$emit('workPhoto:resized')
+            }, 10)
         }
     },
     mounted () {

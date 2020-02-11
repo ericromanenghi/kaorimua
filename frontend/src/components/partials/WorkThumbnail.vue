@@ -1,6 +1,6 @@
 <template>
     <div class='work__item work__item--menu' v-if='isMenuItem'></div>
-    <router-link v-else :to='workEnhanced.link' class='work__item' :style='workEnhanced.style'>
+    <router-link v-else :to='workEnhanced.link' class='work__item work__item--padding' :style='workEnhanced.style'>
         <div>{{ workEnhanced.name }}</div>
     </router-link>
 </template>
