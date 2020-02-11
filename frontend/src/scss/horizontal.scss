@@ -1,0 +1,14 @@
+.arrows {
+    position: fixed;
+}
+.arrow {
+    position: fixed;
+    top: 50%;
+    z-index: 11;
+}
+.arrow--next {
+    right: 15px;
+}
+.arrow--prev {
+    left: 315px;
+}
