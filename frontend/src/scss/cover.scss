@@ -20,7 +20,7 @@
     z-index: 3;
 }
 .cover:after {
-    background: rgba($color-secondary, .5);
+    background: rgba($color-secondary, .6);
     content: '';
     display: block;
     height: 100%;
@@ -30,11 +30,32 @@
     width: 100%;
     z-index: 4;
 }
+.cover__text {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+}
+.cover__text h1 {
+    color: #fff;
+    font-size: 2em;
+    margin: 0;
+    padding: 30px;
+    text-align: center;
+}
 
 @media screen and (min-width: 700px) {
     .cover {
         height: calc(100vh - 30px);
         margin: 15px;
         width: calc(100% - 30px);
+    }
+    .cover__text h1 {
+        font-size: 2.4em;
     }
 }
