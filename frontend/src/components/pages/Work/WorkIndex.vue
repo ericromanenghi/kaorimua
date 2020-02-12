@@ -1,11 +1,9 @@
 <template>
     <div>
-        <div class='work' v-if='!displayError'>
-            <HorizontalPage class='work__list'>
-                <WorkThumbnail isMenuItem='1' />
-                <WorkThumbnail v-for='work in works' v-bind:key='work.slug' :work=work />
-            </HorizontalPage>
-        </div>
+        <HorizontalPage v-if='!displayError'>
+            <WorkThumbnail isMenuItem='1' />
+            <WorkThumbnail v-for='work in works' v-bind:key='work.slug' :work=work />
+        </HorizontalPage>
         <PageError v-if='displayError' />
     </div>
 </template>
@@ -50,4 +48,4 @@ export default {
 }
 </script>
 
-<style lang='scss' src="@/scss/work/list.scss" scoped></style>
+<style lang='scss' src="@/scss/work/list.scss"></style>

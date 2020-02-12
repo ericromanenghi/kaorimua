@@ -1,14 +1,39 @@
+@import './variables.scss';
+
 .arrows {
     position: fixed;
 }
 .arrow {
+    align-items: center;
+    background: rgba(#fff, .9);
+    border: 0;
+    box-shadow: 5px 5px 10px rgba(#000, .2);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    height: 50px;
+    justify-content: center;
     position: fixed;
-    top: 50%;
+    top: calc(50% - 25px);
+    transition: background .2s linear;
+    width: 50px;
     z-index: 11;
+}
+.arrow:hover {
+    background: #fff;
 }
 .arrow--next {
     right: 15px;
 }
 .arrow--prev {
     left: 315px;
+}
+.arrow svg {
+    fill: none;
+    stroke: #000;
+    stroke-linecap: round;
+    stroke-width: 2;
+}
+.arrow--prev svg {
+    transform: scaleX(-1);
 }

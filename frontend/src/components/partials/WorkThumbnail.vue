@@ -20,4 +20,4 @@ export default {
 }
 </script>
 
-<style lang='scss' src='@/scss/work/item.scss' scoped></style>
+<style lang='scss' src='@/scss/work/item.scss'></style>

@@ -1,12 +1,10 @@
 <template>
     <div>
-        <div class='work' v-if='!displayError'>
-            <HorizontalPage class='work__list'>
-                <WorkThumbnail isMenuItem='1' />
-                <WorkDescription :work='work'/>
-                <WorkPhoto v-for='photo in photos' v-bind:key='photo.src' :photo=photo />
-            </HorizontalPage>
-        </div>
+        <HorizontalPage v-if='!displayError'>
+            <WorkThumbnail isMenuItem='1' />
+            <WorkDescription :work='work'/>
+            <WorkPhoto v-for='photo in photos' v-bind:key='photo.src' :photo=photo />
+        </HorizontalPage>
         <PageError v-if='displayError' />
     </div>
 </template>
@@ -62,4 +60,4 @@ export default {
 }
 </script>
 
-<style lang='scss' src='@/scss/work/list.scss' scoped></style>
+<style lang='scss' src='@/scss/work/list.scss'></style>

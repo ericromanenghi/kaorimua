@@ -46,4 +46,4 @@ export default {
 }
 </script>
 
-<style lang='scss' src='@/scss/photo.scss' scoped></style>
+<style lang='scss' src='@/scss/photo.scss'></style>
