@@ -3,32 +3,5 @@ services:
     backend:
         image: kaorimua/backend
         build: ./backend
-        ports:
-            - "5000:5000"
-        environment:
-            - CONFIG_FILE=/app/config/dev.py
         volumes:
-            - ./backend:/app
             - ./static/img:/static/img
-    frontend:
-        image: kaorimua/frontend
-        command: npm run serve
-        build: ./frontend
-        ports:
-            - "80:8080"
-        volumes:
-            - ./frontend:/usr/src/app
-            - ./static/img:/usr/src/app/public/static/img
-    admin:
-        image: kaorimua/admin
-        command: npm run serve
-        build: ./admin
-        ports:
-            - "8000:8080"
-        environment:
-            - HOST=0.0.0.0
-        volumes:
-            - ./admin:/usr/src/app
-            - ./static/img:/usr/src/app/public/static/img
-            - /usr/src/app/node_modules
-

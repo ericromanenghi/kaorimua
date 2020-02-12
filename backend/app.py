@@ -4,14 +4,17 @@ from flask import Flask, request, Response
 from flask_cors import CORS
 
 from sqlalchemy.exc import IntegrityError
+from lib import prefix_middleware
 
 app = Flask(__name__, instance_relative_config=True)
+app.wsgi_app = prefix_middleware.PrefixMiddleware(app.wsgi_app, prefix='/api')
 CORS(app)
 
 app.config.from_object('config.default')
 app.config.from_pyfile('config.py', silent=True)
 app.config.from_envvar('CONFIG_FILE')
 app.config['CORS_HEADERS'] = 'Content-Type'
+app.config["APPLICATION_ROOT"] = '/api'
 
 with app.app_context():
     from lib import db, gallery, photo, file_utils
@@ -20,6 +23,9 @@ with app.app_context():
 def shutdown_session(exception=None):
     db.base.db_session.remove()
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return 'This route does not exist {}'.format(request.url), 404
 
 @app.route('/')
 def index():
@@ -104,4 +110,3 @@ def get_photos_by_gallery_id(gallery_id):
 if __name__ == '__main__':
     db.init_db()
     app.run('0.0.0.0')
-

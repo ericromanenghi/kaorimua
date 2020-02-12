@@ -1,0 +1,26 @@
+version: '3'
+services:
+    server:
+        image: kaorimua/server
+        build:
+            context: ./
+            dockerfile: server/Dockerfile
+        ports:
+            - "80:80"
+        depends_on:
+            - backend
+        logging: &logging
+            driver: "json-file"
+            options:
+              max-size: "200k"
+              max-file: "10"
+        restart: always
+        volumes:
+            - ./static/img:/app/static/img
+    backend:
+        command: uwsgi --ini ./config/uwsgi.ini
+        environment:
+            - CONFIG_FILE=/app/config/dev.py
+        volumes:
+            - ./static/img:/static/img
+            - ./backend/db:/app/db
