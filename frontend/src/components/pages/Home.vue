@@ -2,6 +2,9 @@
     <div class='container'>
         <div class='cover'>
             <div class='cover__photo' v-for='(photo, index) in photos' :key='photo' :style='{ backgroundImage: `url(${photo})`, opacity: currentPhotoIndex === index ? 1 : 0 }'></div>
+            <div class='cover__text'>
+                <h1>Kaori Yonamine<br>Professional MakeUp Artist</h1>
+            </div>
         </div>
     </div>
 </template>

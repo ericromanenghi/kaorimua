@@ -17,4 +17,4 @@ export default {
 }
 </script>
 
-<style lang='scss' src='@/scss/work/description.scss' scoped></style>
+<style lang='scss' src='@/scss/work/description.scss'></style>
