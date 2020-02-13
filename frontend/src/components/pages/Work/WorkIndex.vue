@@ -39,11 +39,15 @@ export default {
             setTimeout(() => {
                 EventBus.$emit('workPhoto:resized')
             }, 10)
-        }
+        },
+        handleError () {
+            EventBus.$emit('loading:end')
+            this.displayError = true
+        },
     },
     mounted () {
         EventBus.$emit('loading:start')
-        this.$http.get(this.endpoint).then(this.renderPhotos)
+        this.$http.get(this.endpoint).then(this.renderPhotos).catch(this.handleError)
     }
 }
 </script>
