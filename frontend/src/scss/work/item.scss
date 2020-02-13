@@ -14,7 +14,7 @@
     color: #fff;
     display: flex;
     font-size: 2em;
-    font-weight: bold;
+    font-weight: $font-bold;
     height: 400px;
     justify-content: center;
     transition: background .2s ease;
@@ -36,7 +36,6 @@
     }
     .work__item > div {
         font-size: 2.4em;
-        font-weight: bold;
         height: calc(100vh - 80px);
     }
     .work__item--menu {
