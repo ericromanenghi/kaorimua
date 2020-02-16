@@ -12,12 +12,13 @@ services:
             - ./static/img:/static/img
     frontend:
         image: kaorimua/frontend
+        command: npm run serve
         build: ./frontend
         ports:
-            - "80:80"
+            - "80:8080"
         volumes:
-            - ./frontend:/usr/share/nginx/html
-            - ./static/img:/usr/share/nginx/html/static/img
+            - ./frontend:/usr/src/app
+            - ./static/img:/usr/src/app/public/static/img
     admin:
         image: kaorimua/admin
         command: npm run serve

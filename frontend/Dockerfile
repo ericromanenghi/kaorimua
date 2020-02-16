@@ -1,6 +1,12 @@
-FROM nginx:alpine
+FROM node:10.15.0
 
-RUN mkdir /usr/share/nginx/html/static
-RUN mkdir /usr/share/nginx/html/static/img
+RUN mkdir /usr/src/app
 
-COPY . /usr/share/nginx/html
+WORKDIR /usr/src/app
+
+# add `/usr/src/app/node_modules/.bin` to $PATH
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
+
+# install and cache app dependencies
+COPY package.json /usr/src/app/package.json
+RUN npm install
