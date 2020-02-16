@@ -33,7 +33,7 @@ export default {
         }
     },
     mounted() {
-        axios.get("http://localhost:5000/gallery/all").then(response => {
+        axios.get(`${process.env.VUE_APP_API_URL}/gallery/all`).then(response => {
             this.galleries = response.data.galleries;
         });
     },

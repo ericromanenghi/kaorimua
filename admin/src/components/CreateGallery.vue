@@ -70,7 +70,7 @@
                 this.errorMsg = 'Something went wrong, please try again =S';
             },
             onSubmit() {
-                axios.post("http://localhost:5000/gallery", {
+                axios.post(`${process.env.VUE_APP_API_URL}/gallery`, {
                     gallery_name: this.name,
                     photographer: this.photographer,
                     model: this.model 

@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div v-for="photo in photos" v-bind:key="photo.id" class="photo-container col s6">
-                <img :src="'/static/img/' + photo.filename" class="responsive-img gallery-photo">
+                <img :src="`${base_img_path}/${photo.filename}`" class="responsive-img gallery-photo">
                 <a v-on:click="deletePhoto(photo)" class="btn-floating btn-small waves-effect waves-light red">
                     <i class="material-icons">delete</i>
                 </a>
@@ -16,7 +16,8 @@ export default {
     props: ['gallery_id'],
     data() {
         return {
-            photos: []
+            photos: [],
+            base_img_path: `${process.env.VUE_APP_API_IMAGE_BASE}`,
         };
     },
     mounted() {
@@ -28,7 +29,7 @@ export default {
             formData.append('file', this.file);
             formData.append('gallery_id', this.gallery_id)
             axios.get(
-                "http://localhost:5000/gallery/" + this.gallery_id + "/photos"
+                `${process.env.VUE_APP_API_URL}/gallery/${this.gallery_id}/photos`
             ).then(response => {
                 this.photos = response.data.photos;
             }).catch(error => {
@@ -36,9 +37,8 @@ export default {
             });
         },
         deletePhoto: function(photo) {
-            console.log(photo);
             axios.delete(
-                "http://localhost:5000/photo/" + photo.id,
+                `${process.env.VUE_APP_API_URL}/photo/${photo.id}`,
             ).then(function() {
                 this.photos.splice(this.photos.indexOf(photo), 1)
             }).catch(response => {

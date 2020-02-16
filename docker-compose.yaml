@@ -20,6 +20,7 @@ services:
             - ./static/img:/usr/share/nginx/html/static/img
     admin:
         image: kaorimua/admin
+        command: npm run serve
         build: ./admin
         ports:
             - "8000:8080"

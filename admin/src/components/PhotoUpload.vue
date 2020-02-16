@@ -65,7 +65,7 @@ export default {
             let formData = new FormData();
             formData.append('file', this.file);
             formData.append('gallery_id', this.gallery_id)
-            axios.post("http://localhost:5000/photo",
+            axios.post(`${process.env.VUE_APP_API_URL}/photo`,
                 formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
