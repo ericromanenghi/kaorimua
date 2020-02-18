@@ -5,4 +5,5 @@ dist/
 *.pid
 *.tar*
 *.log
+*.htpasswd
 build_package_push.sh
