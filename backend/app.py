@@ -18,6 +18,7 @@ app.config["APPLICATION_ROOT"] = '/api'
 
 with app.app_context():
     from lib import db, gallery, photo, file_utils
+    db.init_db()
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):
@@ -108,5 +109,4 @@ def get_photos_by_gallery_id(gallery_id):
 
 
 if __name__ == '__main__':
-    db.init_db()
     app.run('0.0.0.0')
