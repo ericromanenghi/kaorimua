@@ -2,3 +2,5 @@
 /static/
 *.sublime-*
 *.pid
+*.tar*
+*.log
