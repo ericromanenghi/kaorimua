@@ -22,7 +22,7 @@ services:
     backend:
         command: uwsgi --ini ./config/uwsgi.ini
         environment:
-            - CONFIG_FILE=/app/config/dev.py
+            - CONFIG_FILE=/app/config/prod.py
         volumes:
             - ./static/img:/static/img
             - ./backend/db:/app/db
