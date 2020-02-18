@@ -17,6 +17,8 @@ services:
         restart: always
         volumes:
             - ./static/img:/app/static/img
+        labels:
+          service.name: "server"
     backend:
         command: uwsgi --ini ./config/uwsgi.ini
         environment:
@@ -24,3 +26,5 @@ services:
         volumes:
             - ./static/img:/static/img
             - ./backend/db:/app/db
+        labels:
+          service.name: "api"

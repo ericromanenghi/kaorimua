@@ -32,8 +32,6 @@ export default {
                 `${process.env.VUE_APP_API_URL}/gallery/${this.gallery_id}/photos`
             ).then(response => {
                 this.photos = response.data.photos;
-            }).catch(error => {
-                console.log(error);
             });
         },
         deletePhoto: function(photo) {
@@ -41,8 +39,6 @@ export default {
                 `${process.env.VUE_APP_API_URL}/photo/${photo.id}`,
             ).then(function() {
                 this.photos.splice(this.photos.indexOf(photo), 1)
-            }).catch(response => {
-                console.log(response);
             });
         }
     }

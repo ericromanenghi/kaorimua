@@ -74,10 +74,9 @@ export default {
                 this.submited = true;
                 this.success = true;
                 this.$emit('photo-added', response.data);
-            }).catch(error => {
+            }).catch(function() {
                 this.submited = true;
                 this.success = false;
-                console.log(error);
             });
         }
     }
