@@ -5,9 +5,23 @@ from PIL import Image
 from .db.photo import Photo
 from .db.base import db_session
 from .renders import render_photo
-from .file_utils import get_full_path
+from .file_utils import get_full_path, allowed_file, secure_filename, save_file
 
-def add_new_photo(filename, gallery_id):
+def add_new_photo(file, gallery_id):
+    if not file or file.filename == '':
+        return {"error": "Invalidad name or file"}
+
+    if not allowed_file(file.filename):
+        return {"error": "File extension not allowed"}
+
+    filename = secure_filename(file.filename)
+    
+    try:
+        save_file(file, filename)
+    except:
+        app.logger.error("File couldn't be saved")
+        return {"error": "File couldn't be saved"}
+    
     width, height = _get_photo_size(filename)
 
     photo = Photo(

@@ -45,24 +45,9 @@ def process_photo_request():
     if 'file' not in request.files:
         return 'At least one file required', 400
 
-    file = request.files['file']
-    
-    if not file or file.filename == '':
-        return 'At least one file required', 400
+    uploaded_photos = map(lambda f: photo.add_new_photo(f, gallery_id), files.getlist('file'))
 
-    if not file_utils.allowed_file(file.filename):
-        return 'File extension not allowed', 400
-
-    filename = file_utils.secure_filename(file.filename)
-
-    try:
-        file_utils.save_file(file, filename)
-        photo.add_new_photo(filename, gallery_id)
-    except:
-        app.logger.error("File couldn't be saved")
-        return "File couldn't be saved", 500
-
-    return Response(json.dumps({'filename': filename}), mimetype='application/json')
+    return Response(json.dumps({'data': list(uploaded_photos)}), mimetype='application/json')
 
 
 @app.route('/photo/<photo_id>', methods=['GET'])
