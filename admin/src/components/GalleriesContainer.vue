@@ -10,7 +10,7 @@
         </div>
         <div id="galleries-list">
             <div v-for="gallery in galleries" v-bind:key="gallery.id"> 
-                <gallery-block :id="gallery.id" :name="gallery.name"></gallery-block>
+                <gallery-block :id="gallery.id" :name="gallery.name" :photographer="gallery.photographer" :model="gallery.model"></gallery-block>
             </div>
         </div>
     </div>

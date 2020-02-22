@@ -6,7 +6,13 @@
                 <photo-upload :gallery_id="id"></photo-upload>
             </p>
             <p>
-                <gallery-edit :gallery_id="id"></gallery-edit>
+                <gallery-edit :gallery_id="id" :name="name" :photographer="photographer" :model="model"></gallery-edit>
+            </p>
+            <p>
+                Photographer: {{ photographer }}
+            </p>
+            <p>
+                Model: {{ model }}
             </p>
             <gallery-photos :gallery_id="id"></gallery-photos>
         </div>
@@ -24,7 +30,7 @@ export default {
         GalleryEdit,
         GalleryPhotos
     },
-    props: ['name', 'id'],
+    props: ['id', 'name', 'photographer', 'model'],
     data() {
         return {
             active: false

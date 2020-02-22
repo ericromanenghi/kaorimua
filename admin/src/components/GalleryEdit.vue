@@ -9,15 +9,15 @@
                     <h3>Edit gallery</h3>
                     <p>
                         <label for="name">Gallery name:</label>
-                        <input :id="modal_id + '-name'" v-model="name" placeholder="name" autocomplete="off" required="" aria-required="true">
+                        <input :id="modal_id + '-name'" v-model="new_name" placeholder="name" autocomplete="off" required="" aria-required="true">
                     </p>
                     <p>
                         <label for="photographer">Photographer:</label>
-                        <input :id="modal_id + '-photographer'" v-model="photographer" placeholder="photographer">
+                        <input :id="modal_id + '-photographer'" v-model="new_photographer" placeholder="photographer">
                     </p>
                     <p>
                         <label for="name">Model:</label>
-                        <input :id="modal_id + '-model'" v-model="model" placeholder="model">
+                        <input :id="modal_id + '-model'" v-model="new_model" placeholder="model">
                     </p>
                     <p>
                         <button v-on:click="onSubmit()" class="btn waves-effect waves-light">
@@ -43,15 +43,15 @@
 import axios from 'axios';
 
 export default {
-    props: ['gallery_id'],
+    props: ['gallery_id', 'name', 'photographer', 'model'],
     data() {
         return {
             submited: false,
             success: false,
             modal_id: '',
-            name: '',
-            photographer: '',
-            model: ''
+            new_name: '',
+            new_photographer: '',
+            new_model: '',
         };
     },
     mounted() {
@@ -59,6 +59,9 @@ export default {
         let elems = this.$el.querySelectorAll('.modal');
         // eslint-disable-next-line
         let instances = M.Modal.init(elems);
+        this.new_name = this.name;
+        this.new_photographer = this.photographer;
+        this.new_model = this.model;
     },
     methods: {
         displayGalleryEdit() {
@@ -67,9 +70,9 @@ export default {
         },
         onSubmit() {
             axios.post(`${process.env.VUE_APP_API_URL}/gallery/${this.gallery_id}`, {
-                gallery_name: this.name,
-                photographer: this.photographer,
-                model: this.model 
+                gallery_name: this.new_name,
+                photographer: this.new_photographer,
+                model: this.new_model 
             }).then(response => {
                 this.submited = true;
                 this.success = true;
