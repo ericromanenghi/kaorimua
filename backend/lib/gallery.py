@@ -21,6 +21,23 @@ def add_new_gallery(gallery_name, photographer=None, model=None):
 
     return {'gallery': render_gallery(gallery)}
 
+def update_gallery(gallery_id, gallery_name, photographer=None, model=None):
+    gallery = db_session.query(Gallery).get(gallery_id)
+
+    if gallery is None:
+        return {'error': "Gallery doesn't exist"}
+
+    slug = slugify(gallery_name)
+
+    gallery.name = gallery_name
+    gallery.slug = slug
+    gallery.photographer = photographer
+    gallery.model = model
+
+    db_session.commit()
+
+    return {'gallery': render_gallery(gallery)}
+
 def get_gallery(gallery_id):
     gallery = db_session.query(Gallery).get(gallery_id)
 

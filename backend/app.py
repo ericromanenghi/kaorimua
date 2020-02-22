@@ -61,7 +61,7 @@ def get_photo_by_id(photo_id):
 def delete_photo(photo_id):
     return Response(json.dumps(photo.delete_photo(photo_id)), mimetype='application/json')
 
-@app.route('/gallery', methods=['POST'])
+@app.route('/gallery', methods=['PUT'])
 def create_gallery():
     params = request.get_json()
     if 'gallery_name' not in params:
@@ -73,6 +73,22 @@ def create_gallery():
 
     try:
         response = gallery.add_new_gallery(gallery_name, photographer, model)
+    except IntegrityError as e:
+        return 'Something went wrong. It seems like you chose an already existing gallery name, please try with another one.', 500
+    return Response(json.dumps(response), mimetype='application/json')
+
+@app.route('/gallery/<gallery_id>', methods=['POST'])
+def update_gallery(gallery_id):
+    params = request.get_json()
+    if 'gallery_name' not in params:
+        return 'bad request!', 400
+
+    gallery_name = params['gallery_name']
+    photographer = params['photographer'] if 'photographer' in params else None
+    model = params['model'] if 'model' in params else None
+
+    try:
+        response = gallery.update_gallery(gallery_id, gallery_name, photographer, model)
     except IntegrityError as e:
         return 'Something went wrong. It seems like you chose an already existing gallery name, please try with another one.', 500
     return Response(json.dumps(response), mimetype='application/json')

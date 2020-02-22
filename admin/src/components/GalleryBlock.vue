@@ -1,20 +1,27 @@
 <template>
     <div>
         <h4 @click="toggleActive">{{ name }}</h4>
-        <p v-if="active">
-            <photo-upload :gallery_id="id"></photo-upload>
-        </p>
-        <gallery-photos :gallery_id="id"></gallery-photos>
+        <div v-if="active"> 
+            <p>
+                <photo-upload :gallery_id="id"></photo-upload>
+            </p>
+            <p>
+                <gallery-edit :gallery_id="id"></gallery-edit>
+            </p>
+            <gallery-photos :gallery_id="id"></gallery-photos>
+        </div>
     </div>
 </template>
 
 <script>
 import PhotoUpload from './PhotoUpload.vue';
+import GalleryEdit from './GalleryEdit.vue';
 import GalleryPhotos from './GalleryPhotos.vue';
 
 export default {
     components: {
         PhotoUpload,
+        GalleryEdit,
         GalleryPhotos
     },
     props: ['name', 'id'],
