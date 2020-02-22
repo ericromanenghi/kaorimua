@@ -84,7 +84,8 @@ def delete_gallery(gallery_id):
 @app.route('/gallery/<gallery_id>', methods=['GET'])
 def get_gallery_by_id(gallery_id):
     if gallery_id == 'all':
-        return Response(json.dumps(gallery.get_all_galleries()), mimetype='application/json')
+        allow_empty = request.args.get('allow_empty')
+        return Response(json.dumps(gallery.get_all_galleries(allow_empty)), mimetype='application/json')
     else:
         return Response(json.dumps(gallery.get_gallery(gallery_id)), mimetype='application/json')
 

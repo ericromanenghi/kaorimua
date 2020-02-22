@@ -29,8 +29,13 @@ def get_gallery(gallery_id):
     
     return {'gallery': render_gallery(gallery)}
 
-def get_all_galleries():
-    return {"galleries": list(map(render_gallery, db_session.query(Gallery).all()))}
+def get_all_galleries(allow_empty=0):
+    if allow_empty:
+        galleries = db_session.query(Gallery).all()
+    else:   
+        galleries = filter(lambda g: len(g.photos) > 0, db_session.query(Gallery).all())
+
+    return {"galleries": list(map(render_gallery, galleries))}
 
 def delete_gallery(gallery_id):
     gallery = db_session.query(Gallery).get(gallery_id)
