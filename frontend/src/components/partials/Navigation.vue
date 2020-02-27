@@ -10,8 +10,8 @@
                 <li><router-link to='/contact' class='navigation__item'>Contact</router-link></li>
             </ul>
             <p class='navigation__contact'>
-                +31 614 395 295<br>
-                <a href='#'>info@kaorimua.nl</a>
+                +31 614 802 365<br>
+                <a href='#'>kaorimua@gmail.com</a>
             </p>
         </nav>
         <header class='header'>

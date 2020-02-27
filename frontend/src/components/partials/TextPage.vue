@@ -4,9 +4,8 @@
             <div class='textpage__photo' :style='style'>
                 <h1>{{ title }}</h1>
                 <ul class='textpage__links'>
-                    <li><a href='#'>Instagram</a></li>
-                    <li><a href='#'>Facebook</a></li>
-                    <li><a href='#'>Snapchat</a></li>
+                    <li><a href='https://www.instagram.com/kaori_mua/' target="_blank">Instagram</a></li>
+                    <li><a href='https://www.facebook.com/kaori.mua.77' target="_blank">Facebook</a></li>
                 </ul>
             </div>
             <div class='textpage__text'>

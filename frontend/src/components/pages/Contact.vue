@@ -1,19 +1,19 @@
 <template>
     <TextPage title='Contact'>
-        <p class='textpage__intro'>Love yourself as you are<br>and enjoy doing what you do</p>
-        <p>My name is Kaori, a passionate beauty lover &amp; freelance makeup artist, hairstylist &amp; winner of the Talent Award of 2018 in The Netherlands. After finishing my Makeup Artist course at the Glamour Makeup I started freelancing straight away. </p>
+        <p class='textpage__intro'>Do you want to get in touch with me?</p>
+        <p>Feel free to contact me via Whatsapp or any of my social media profiles.</p>
         <ul class='contact'>
             <li>
                 <span class='contact__name'>Phone</span>
-                <span class='contact__value'>+31 614 502 921</span>
+                <span class='contact__value'>+31 614 802 365</span>
             </li>
             <li>
                 <span class='contact__name'>E-mail</span>
-                <span class='contact__value'><a href='#'>hello@kaorimua.nl</a></span>
+                <span class='contact__value'><a href='#'>kaorimua@gmail.com</a></span>
             </li>
             <li>
                 <span class='contact__name'>Instagram</span>
-                <span class='contact__value'><a href='#'>@kaori_mua</a></span>
+                <span class='contact__value'><a href='https://www.instagram.com/kaori_mua/' target="_blank">@kaori_mua</a></span>
             </li>
         </ul>
     </TextPage>
