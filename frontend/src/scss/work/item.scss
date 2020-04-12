@@ -17,6 +17,8 @@
     font-weight: $font-bold;
     height: 400px;
     justify-content: center;
+    padding: 30px;
+    text-align: center;
     transition: background .2s ease;
 }
 .work__item:hover > div {

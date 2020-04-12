@@ -3,8 +3,8 @@
         <div>
             <h2>{{ work.name }}</h2>
             <p>
-                Model: {{ work.model }}<br>
-                Photographer: {{ work.photographer }}
+                <span v-if='work.model'>Model: {{ work.model }}<br></span>
+                <span v-if='work.photographer'>Photographer: {{ work.photographer }}</span>
             </p>
         </div>
     </div>
