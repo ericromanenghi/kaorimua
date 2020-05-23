@@ -1,10 +1,12 @@
 <template>
     <div>
-        <HorizontalPage v-if='!displayError'>
-            <WorkThumbnail isMenuItem='1' />
-            <WorkDescription :work='work'/>
-            <WorkPhoto v-for='photo in photos' v-bind:key='photo.src' :photo=photo />
-        </HorizontalPage>
+        <transition name='fade'>
+            <HorizontalPage v-if='!displayError && !loading'>
+                <WorkThumbnail isMenuItem='1' />
+                <WorkDescription :work='work' />
+                <WorkPhoto v-for='photo in photos' v-bind:key='photo.src' :photo=photo />
+            </HorizontalPage>
+        </transition>
         <PageError v-if='displayError' />
     </div>
 </template>
@@ -24,6 +26,7 @@ export default {
             work: {},
             photos: [],
             displayError: false,
+            loading: true,
         }
     },
     components: {
@@ -36,6 +39,7 @@ export default {
     methods: {
         renderPhotos (response) {
             EventBus.$emit('loading:end')
+            this.loading = false
             const data = response.data.gallery
             this.photos = data.photos.map(photo => {
                 return {
@@ -50,11 +54,13 @@ export default {
         },
         handleError () {
             EventBus.$emit('loading:end')
+            this.loading = false
             this.displayError = true
         },
     },
     mounted () {
         EventBus.$emit('loading:start')
+        this.loading = true
         this.$http.get(this.endpoint).then(this.renderPhotos).catch(this.handleError)
     }
 }
